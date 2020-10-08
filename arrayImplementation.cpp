@@ -66,5 +66,6 @@ void returnNode(BaseArray<T> &array, int p) // p is the index of which node we w
 template<class T>
 bool resizeBaseArray(BaseArray<T> &array, int capacity)
 {
-    T *resize = new(nothrow)
+    T *resize = new(nothrow)node<T>[capacity];
+    for(int i=0;i<array.c
 }
