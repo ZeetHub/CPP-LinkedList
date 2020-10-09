@@ -87,8 +87,8 @@ bool resizeBaseArray(BaseArray<T> &array, int capacity)//CAN CAPACITY BE RECEIVE
 template <class T>
 void returnList(BaseArray<T> &array, int listHead, int listTail) 
 {
-    listHead = array.available; //Should listHead be listTail instead?
-    array.available = listTail; 
+    listTail = array.available; //Can listTail be listHead instead? No. listHead and listTail are not nodes. 
+    array.available = listHead; 
 }
 
 template<class T>
