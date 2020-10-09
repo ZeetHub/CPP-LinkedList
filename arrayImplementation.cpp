@@ -64,14 +64,31 @@ void returnNode(BaseArray<T> &array, int p) // p is the index of which node we w
 }
 
 template<class T>
-bool resizeBaseArray(BaseArray<T> &array, int capacity)
+bool resizeBaseArray(BaseArray<T> &array, int capacity)//CAN CAPACITY BE RECEIVED AS A MEMBER VARIABLE OF THE BASEARRAY STRUCT???
 {
     if(array.available == NIL)
     {
-        T *resize = new(nothrow)node<T>[capacity]{};
+        BaseArray<T> resizedArray;
+        resizedArray.base = new(nothrow)node<T>[capacity]{};
         for(int i=0;i<array.capacity-1;i++)
-            resize[i] = array[i];
+            resizedArray.base[i].data = array.base[i].data;
+
+        for(int j=0;j<capacity-2;j++)
+            resizedArray.base[i].next = i+1;
+        resizedArray.base[capacity-1].next = NIL;
+        resizedArray.available = 0;
+        
+        return true;
     }
+
+    return false;
+}
+
+template <class T>
+void returnList(BaseArray<T> &array, int listHead, int listTail) 
+{
+    listHead = array.available; //Should listHead be listTail instead?
+    array.available = listTail; 
 }
 
 int main()
