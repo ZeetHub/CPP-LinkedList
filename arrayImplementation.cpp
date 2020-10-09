@@ -91,6 +91,12 @@ void returnList(BaseArray<T> &array, int listHead, int listTail)
     array.available = listTail; 
 }
 
+template<class T>
+void destroyBaseArray(BaseArray<T> &array)
+{
+    delete [] array.base;
+}
+
 int main()
 {
 
