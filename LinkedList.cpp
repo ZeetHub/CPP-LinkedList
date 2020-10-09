@@ -26,7 +26,7 @@ int isEmpty(LinkedList<T> list)
 }
 
 template <class T>
-int insertNode(LinkedList<T> list, int p)//This function is used only when dealing with a sorted list.
+int insertNode(LinkedList<T> list, int p)//This function is used only when dealing with a sorted list. Also note that the list is assed here by value. 
 {
     //return a pointer to the preceding element after which node p is to be inserted. 
     int found=0;
@@ -36,7 +36,7 @@ int insertNode(LinkedList<T> list, int p)//This function is used only when deali
         if(list.array->base[list.head].data < list.array->base[p].data)
         {
             prev = list.head;
-            list.head = list.array->base[list.head].next;
+            list.head = list.array->base[list.head].next; //Why wouldn't this distroy the list as the head is traversing with each loop?
         }
         else
         {
@@ -70,4 +70,20 @@ void insertNode(LinkedList<T> &list, int p, int prev)
             list.tail = p;
     }
     
+}
+
+
+template <class T>
+bool insert(LinkedList<T> &list, T newData)//function that the user of the program uses
+{
+    int p=NIL, prev;
+    p=getNode(list->array)
+    if(p != NIL)
+    {
+        list.array->base[p].data = newData;
+        if(list.sorted == false)
+            prev = list.tail;
+        else
+            prev = insertionSlot
+    }
 }
