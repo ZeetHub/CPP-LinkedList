@@ -74,7 +74,7 @@ bool resizeBaseArray(BaseArray<T> &array, int capacity)//CAN CAPACITY BE RECEIVE
             resizedArray.base[i].data = array.base[i].data;
 
         for(int j=0;j<capacity-2;j++)
-            resizedArray.base[i].next = i+1;
+            resizedArray.base[j].next = j+1;
         resizedArray.base[capacity-1].next = NIL;
         resizedArray.available = 0;
         
