@@ -77,7 +77,7 @@ template <class T>
 bool insert(LinkedList<T> &list, T newData)//function that the user of the program uses
 {
     int p=NIL, prev;
-    p=getNode(*(list.array))
+    p=getNode(*(list.array));
     if(p != NIL)
     {
         list.array->base[p].data = newData;

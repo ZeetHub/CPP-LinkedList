@@ -18,8 +18,9 @@ struct BaseArray//Create a dynamic array to hold the linked list
     int available;
 };
 
+//BASE ARRAY
 template <class T>
-bool initializeBaseArray(BaseArray<T> &array, int capacity)//Function initializes the base array
+bool initializeBaseArray(BaseArray<T> &array, int capacity)//Function initializes the dynamic base array
 {
     array.base = new(nothrow)node<T>[capacity];
     if(array.base)
@@ -96,6 +97,8 @@ void destroyBaseArray(BaseArray<T> &array)
 {
     delete [] array.base;
 }
+
+//LINKEDLIST
 
 int main()
 {
