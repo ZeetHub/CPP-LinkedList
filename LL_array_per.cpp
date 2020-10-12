@@ -50,14 +50,21 @@ void insertData(node list[], int pos, double dataValue)
 //4.3.
 int insertionSlot(const node list[], int head, int pos)
 {
-    int prevPosition = NIL;
-    if(head != NIL)
+    bool found {false};//See the description of why we need this under the while statement.
+    int prevPosition = NIL;// This is a starting assumption that the insertion is at the head. It will be changed while head != NIL(list has at least one node) and if the data to be inserted is greater than the data at which the head points to. See below:
+
+    while(head != NIL && !found)//Although "head" at first holds the entry point to the data linked list (in which case "head != NIL" checks if data linked list has at least one node), apart from that it tracks the next node to be considered for comparison(in which case "head != NIL" checks if data linked list has reached the end). Since it came by copy from the caller function, the change here does not affect the original value. Therefore we use the boolen variable named found to keep the check on that. If this loop becomes false in the first round, it means it is inserted at the entry to the list("true" head). Therefore, "prevPosition" returns NIL. If it goes on until the end being true, it means the insertion is at the end(after the last element currently in the data linked list).Therefore, "prevPosition" returns the index of the node whose next element points to NIL. If the position of the node to be inserted is between two nodes, "found" tells us when we should stop the loop(when we find the first greater number than the data in the node to be inserted) to avoid late termination.
     {
-        while(list[head].data < list[pos].data)
+        if(list[head].data < list[pos].data)// The varaible "pos" shows the index of the data which is neither in the available nor in the data linked list. 
         {
-            prevPosition = head;
+            prevPosition = head;//prevPosition holds the value of the index of the currently evaluated node. This is important since the data in the next node might be greater than the data of the node to be inserted. When such case occurs the previous index will be returned telling the function which inserts the node(see 4.4) to know next to which node it inserts the new node.
             head = list[head].next;
         }
+        else
+        {
+            found = true;//shows that the previous node after which the new node is to be inserted is found before reaching the end of the list.
+        }
+        
     }
     
     return prevPosition;
@@ -71,6 +78,12 @@ void insertNode(node list[], int head, int slot, int pos)
         list[pos].next = head;
         head = pos;
     }
+    else
+    {
+        list[pos].next = list[slot].next;
+        list[slot].next = pos;
+    }
+    
 }
 
 int main()
@@ -106,4 +119,7 @@ int main()
     slot = insertionSlot(nodeArray, head, pos);// see line 50.
     //4.4.
     insertNode(nodeArray, head, slot, pos);//see line 63.
+
+
+    
 }
